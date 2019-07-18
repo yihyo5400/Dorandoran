@@ -1,2 +1,13 @@
 <!-- 로그인 페이지-->
 <h1>LOGIN</h1>
+
+<form method="POST" action="{% url 'login' %}">
+{% csrf_token %}
+Username:<br>
+<input type="text" name="username"><br>
+Password:<br>
+<input type="text" name="password"><br>
+<hr>
+<input type="submit" value="login">
+
+</form>

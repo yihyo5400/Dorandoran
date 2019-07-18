@@ -3,7 +3,8 @@ from django.urls import path
 from . import views
 
 urlpatterns =[
-    path('join/', views.join, name="join"), # 회원가입
-    path('login/', views.login, name="login"), # 로그인
-    #path('mypage/'), 마이페이지 회원 id 값으로..
+    path('signup/', views.signup, name='signup'),
+    path('login/', views.login, name='login'),
+    path('logout/',views.logout, name='logout'),
+    path('', views.test, name='test'),    
 ]
