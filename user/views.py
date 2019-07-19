@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
+from .models import Profile
 
 def logout(request):
     auth.logout(request)
@@ -10,10 +11,15 @@ def signup(request):
     if request.method=="POST":
         if request.POST["password1"]==request.POST["password2"]:
             user = User.objects.create_user(
-                # onetoone으로 추가하면 될듯.. 파이팅..
+                # user model fields
                 username=request.POST["username"],
+                email=request.POST["email"],
                 password=request.POST["password1"],
             )
+            # one to one
+            nickname = request.POST["nickname"]
+            profile = Profile(user=user, nickname=nickname)
+            profile.save()
             auth.login(request,user)
             return redirect('test')
         return render(request, 'signup.html')
