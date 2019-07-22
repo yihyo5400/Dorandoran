@@ -1,1 +1,5 @@
 <h1>test page</h1>
+{% if user.is_active %}
+{{ user.username }} 님 환영합니다.
+<a href="{% url 'logout' %}">로그아웃</a>
+{% endif %}
