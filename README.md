@@ -1,7 +1,9 @@
 # Dorandoran 😎
 
 -- user app (minjuhui)--
-* veiws.py 에서 username/nickname 중복체크하기 
+* 중복확인 > nickname/id/email 분리하기 && alert로 할 수 있는 방법 찾아보기
+* 비밀번호 정규식 완성하기
+
 * reference (OneToOne Field)
 * https://ssungkang.tistory.com/97 
 

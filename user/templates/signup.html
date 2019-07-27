@@ -1,18 +1,50 @@
 <!--회원가입 페이지-->
+
+
 <h1>JOIN US!</h1>
+
+{{error}}
 
 <form method="POST" action="{% url 'signup' %}">
     {% csrf_token %}
     Username:<br>
-    <input type="text" name="username"><br>
+    <input type="text" name="username" id="user" required><br>
     Email:<br>
-    <input type="email" name="email"><br>
+    <input type="email" name="email" required><br>
     Nickname:<br>
-    <input type="text" name="nickname"><br>
+    <input type="text" name="nickname" required><br>
     Password:<br>
-    <input type="password" name="password1"><br>
+    <input type="password" name="password1" id="pwd1" required><br>
     Confirm Password:<br>
-    <input type="password" name="password2"><br>
+    <input type="password" name="password2" id="pwd2" onkeyup="checkpwd()" required><br>
+    <input type="button" onclick="checkpwd()">
     <hr>
-    <input type="submit" value="sign up">
+    <input type="submit" value="sign up" >
 </form>
+
+<!--<script>
+    function checkpwd(){
+        pwd1 = document.getElementById("pwd1");
+        pwd2 = document.getElementById("pwd2");
+
+        alert("isn't it working?");
+        if !(pwd1.value.search(/\s/) != -1) || !(pwd2.value.search(/\s/) != -1){
+            alert("비밀번호는 공백없이 입력해주세요.");
+            pwd1.value="";
+            pwd2.value="";
+            pwd1.focus(); }
+
+        if(pwd1.value.length==0){
+            alert("비밀번호를 입력해주세요.");
+            pwd2.value="";
+            pwd1.focus();
+        } else {
+        if(pwd1.value != pwd2.value){
+            alert("비밀번호가 일치하지 않습니다.")
+            pwd1.value="";
+            pwd2.value="";
+            pwd1.focus();
+        }
+    } 
+}
+</script>-->
