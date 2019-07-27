@@ -17,7 +17,8 @@ def signup(request):
                 password=request.POST["password1"],
             )
             # one to one
-            nickname = request.POST["nickname"]
+            nickname = request.POST.get("nickname")
+            print(type(nickname))
             profile = Profile(user=user, nickname=nickname)
             profile.save()
             auth.login(request,user)
