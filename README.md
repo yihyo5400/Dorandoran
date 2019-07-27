@@ -1,4 +1,4 @@
-# Dorandoran
+# Dorandoran 😎
 
 -- user app (minjuhui)--
 * veiws.py 에서 username/nickname 중복체크하기 
