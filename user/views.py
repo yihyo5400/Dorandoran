@@ -11,7 +11,13 @@ def logout(request):
 def signup(request):
     if request.method=="POST":
         if request.POST["password1"]==request.POST["password2"]:
-            if user_exist(request)==False:
+            if user_exist(request)==True:
+                return render(request, 'signup.html', {'error1':'존재하는 아이디'})
+            elif email_exist(request)==True:
+                return render(request, 'signup.html', {'error2':'존재하는 이메일'})
+            elif nick_exist(request)==True:
+                return render(request, 'signup.html', {'error3':'존재하는 닉네임'})
+            else:
                 print("** function test (sign up) **")
                 user = User.objects.create_user(
                     # user model fields
@@ -33,11 +39,24 @@ def user_exist(request):
     user = request.POST["username"]
     nickname = request.POST["nickname"]
     print("** function test (user_exist)**")
-    if User.objects.filter(username=user).exists() or Profile.objects.filter(nickname=nickname):
+    if User.objects.filter(username=user).exists():
         return True
     else:
         return False
 
+def email_exist(request):
+    email = request.POST["email"]
+    if User.objects.filter(email=email).exists():
+        return True
+    else: 
+        return False
+
+def nick_exist(request):
+    nickname=request.POST["nickname"]
+    if Profile.objects.filter(nickname=nickname).exists():
+        return True
+    else:
+        return False
 
 def login(request):
     if request.method=="POST":
@@ -52,8 +71,6 @@ def login(request):
             return render(request, 'login.html', {'error':'username or password is incorrect'})
     else:
         return render(request, 'login.html')
-
-
 
 def test(request):
     return render(request, 'test.html')

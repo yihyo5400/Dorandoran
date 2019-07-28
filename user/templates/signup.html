@@ -3,7 +3,9 @@
 
 <h1>JOIN US!</h1>
 
-{{error}}
+{{error1}}
+{{error2}}
+{{error3}}
 
 <form method="POST" action="{% url 'signup' %}">
     {% csrf_token %}
@@ -16,23 +18,15 @@
     Password:<br>
     <input type="password" name="password1" id="pwd1" required><br>
     Confirm Password:<br>
-    <input type="password" name="password2" id="pwd2" onkeyup="checkpwd()" required><br>
-    <input type="button" onclick="checkpwd()">
+    <input type="password" name="password2" id="pwd2" required><br>
     <hr>
-    <input type="submit" value="sign up" >
+    <input type="submit" value="sign up" onclick="checkpwd()">
 </form>
 
-<!--<script>
+ <script>
     function checkpwd(){
         pwd1 = document.getElementById("pwd1");
         pwd2 = document.getElementById("pwd2");
-
-        alert("isn't it working?");
-        if !(pwd1.value.search(/\s/) != -1) || !(pwd2.value.search(/\s/) != -1){
-            alert("비밀번호는 공백없이 입력해주세요.");
-            pwd1.value="";
-            pwd2.value="";
-            pwd1.focus(); }
 
         if(pwd1.value.length==0){
             alert("비밀번호를 입력해주세요.");
@@ -45,6 +39,6 @@
             pwd2.value="";
             pwd1.focus();
         }
-    } 
+    }  
 }
-</script>-->
+</script>
