@@ -7,9 +7,7 @@ from datetime import datetime
 
 from django.utils.dateformat import DateFormat
 
-
-
-
+ 
 
 
 # 지연 : 비디오 재생 페이지를 로드
