@@ -1,15 +1,89 @@
-비디오 재생 및 목록
-{%for video in videos.all%}
-    <div class="container">
-        <a href ="{% url 'vdetail' video.id %}">반응보기</a>
-        <h1>제목: {{video.title}}</h1>
-        </a>
-        <p> 내용 : {{video.body}}</p>
-        <small class="text-muted">{{video.date}}</small>
-        <iframe width="420" height="315"
-        {% if video.video_key %}
-        src="https://www.youtube.com/embed/{{video.video_key}}">
-        {%endif%}
-        </iframe>
-    </div>
-{%endfor%}
+<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>dorandoran</title>
+
+	<!-- 부트스트랩 링크 -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+	<!-- 이미지슬라이드링크 -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+	<!-- css파일 링크 -->
+	<link rel="stylesheet" href="../static/vlist_style.css">
+
+</head>
+<body>
+	<!-- nav var -->
+	<div class = "header">
+		<div class = "nav"> Dorandoran </div><hr>
+	</div>
+
+
+	<!-- 이미지 슬라이더 -->
+	<div class = "img_slider">
+	<div id="app">
+	    <h1 style="color: #fff;">Loading... ⌛️</h1>
+	</div>
+		<script src='https://unpkg.com/react@16.4.0/umd/react.development.js'></script>
+		<script src='https://unpkg.com/react-dom@16.4.0/umd/react-dom.development.js'></script>
+		<script src='https://unpkg.com/styled-components/dist/styled-components.min.js'></script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.6.1/prop-types.min.js'></script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.js'></script>
+		<script src="../static/vlist_script.js"></script>
+	</div>
+
+
+	<!-- 장르 선택 -->
+	<div class = "genre">
+		<div class="card">
+			<div class="card-header">
+			    원하는 장르와 분위기를 선택해보세요!
+			</div>
+			<div class="card-body">
+			    <p class="card-text">
+			    	<button type ="button" class ="choose_genre">랩 / 힙합</button>
+			    	<button type ="button" class ="choose_genre">발라드</button>
+			    	<button type ="button" class ="choose_genre">POP</button>
+			    	<br>
+			    	<button type ="button" class ="choose_genre">여름</button>
+			    	<button type ="button" class ="choose_genre">밤 / 새벽</button>
+			    	<button type ="button" class ="choose_genre">청량한</button>
+			    	<button type ="button" class ="choose_genre">신나는</button>
+			    </p>
+			</div>
+		</div>
+	</div>
+	<br>
+
+	<!-- 비디오리스트들 -->
+	{%for video in videos.all%}
+	<div class = "video_list">
+		<a href ="{% url 'vdetail' video.id %}">
+		<div class="card">
+			<iframe width="280" height="200"
+	        {% if video.video_key %}
+	        src="https://www.youtube.com/embed/{{video.video_key}}" class="card-img-top">
+	        {% endif %}
+	        </iframe>
+			<div class="card-body">
+			<h5 class="card-title">{{video.title}}</h5>
+			<hr>
+			<p class="card-text">
+			<!-- 업로드날짜 -->{{video.date}}
+			 · 
+			<!-- 조회수 -->조회수 1,723,353회
+			</p>
+			<p class="card-text">
+			<!-- 업로드한 사람 --> {{video.body}}
+			</p>
+			</div>
+		</div>
+		</a>
+	</div>
+	{%endfor%}
+</body>
+</html>
