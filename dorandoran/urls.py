@@ -10,6 +10,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',board.views.home,name='home'),
     path('user/', include('user.urls')),
     path('video/', include('video.urls')),
     path('board/', include('board.urls')),

@@ -7,7 +7,8 @@ from .forms import BoardForm, BoardCommentForm
 
 # 메인화면 커뮤니티창
 
-
+def home(request):
+    return render(request,'home.html')
 
 def bhome(request):
     boardList = Board.objects.order_by('-id')
