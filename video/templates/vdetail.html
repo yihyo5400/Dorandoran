@@ -1,31 +1,75 @@
-비디오 {{video.id}}
-<h1>제목: {{video.title}}</h1>
-        </a>
-        <p> 내용 : {{video.body}}</p>
-        <small class="text-muted">{{video.date}}</small>
-        <iframe width="420" height="315"
-        {% if video.video_key %}
-        src="https://www.youtube.com/embed/{{video.video_key}}">
-        {%endif%}
-        </iframe>
-<br/>
-<form method="POST" action="{% url 'vcsave' video.id %}">
-        {% csrf_token %} 
-    <input type="text" name="text">
-    <input type="hidden" name="author" value="변경">
-    <input type="hidden" name="created_date">
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>Dorandoran</title>
+	<!-- 부트스트랩 링크 -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<!-- 외부 스타일시트 -->
+	<link rel="stylesheet" href="../static/vdetail_style.css">
+</head>
+<body>
+	<!-- nav var -->
+	<div class = "header">
+		<div class = "nav"> Dorandoran </div><hr>
+	</div>
+	<!-- 비디오 하나만! -->
+	<div class = "video">
+		<span class="card" id="vdetail">
+			<!-- ?? 이게 뭐져 ? {{video.id}} -->
+			<iframe width="638" height="400"
+			{% if video.video_key %}
+			src="https://www.youtube.com/embed/{{video.video_key}}">
+			{%endif%}
+			</iframe>
+			<div class="card-body">
+			    <h5 class="card-title">{{video.title}}</h5>
+			    <p class="card-text">
+			    <!-- 여기부분을 좋아요를 하려구 했는데 왜 백그라운드 이미지가 안먹을까요^,^ 여행다녀와서 열시미 고민해볼게요.....사랑해요 도란도란...  -->
+				<!-- <button class = "like">&nbsp;</button> -->
+				<!-- 업로드날짜 --> 2019.07.11
+				 · 
+				<!-- 조회수 -->조회수 117,078회
+				</p>
+				<p class="card-text">
+					<!-- 유저의 프로필사진 -->
+					<img id = "user_logo" src="썸네일.png">
+					<!-- 유저이름 -->
+					나는야효영
+				</p>
+			</div>
+		</span>
+		<!-- 가사를 .. 넣을 ... 예정 ... -->
+		<span class="card" id=vlyrics>
+			<div class="card-body">  
+			</div>
+		</span>
+	</div>
+	<div class = "create_comment">
+		<form method="POST" action="{% url 'vcsave' video.id %}">
+		        {% csrf_token %} 
+		    <input type="text" name="text">
+		    <input type="hidden" name="author" value="변경">
+		    <input type="hidden" name="created_date">
 
-    <input type="submit" value="제출">
-</form>        
-<br/>
-댓글:
-{%for vcomment in vcomments.all%}
-    <div class="container">
-        
-        <h1>작성자: {{vcomment.author}}</h1>
-        </a>
-        <p> 작성일 : {{vcomment.created_date}}</p>
-        내용 :<small class="text-muted">{{vcomment.text}}</small>
-        
-    </div>
-{%endfor%}
+		    <input type="submit" value="제출">
+		</form>  
+	</div>
+
+	<div class = "read_comment">
+		{%for vcomment in vcomments.all%}
+		    <div class="container">
+		        
+		        <h1>작성자: {{vcomment.author}}</h1>
+		        </a>
+		        <p> 작성일 : {{vcomment.created_date}}</p>
+		        내용 :<small class="text-muted">{{vcomment.text}}</small>
+		        
+		    </div>
+		{%endfor%}
+	</div>
+</body>
+</html>

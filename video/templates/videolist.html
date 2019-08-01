@@ -60,6 +60,7 @@
 	<br>
 
 	<!-- 비디오리스트들 -->
+    <!-- {% if user.is_authenticated %} -->
 	{%for video in videos.all%}
 	<div class = "video_list">
 		<a href ="{% url 'vdetail' video.id %}">
@@ -85,5 +86,6 @@
 		</a>
 	</div>
 	{%endfor%}
+    <!-- {%endif%} -->
 </body>
 </html>
