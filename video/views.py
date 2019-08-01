@@ -24,6 +24,7 @@ def vdetail(request,video_id):
     vcomments=VComment.objects.filter(vpost=video_detail)
     return render(request,'vdetail.html',{'video':video_detail,'vcomments':vcomments})
 
+# 지연 : 댓글 저장 기능만 하는 함수
 def vcsave(request,video_id):
     videos=Video.objects
     video_detail=get_object_or_404(Video,pk=video_id)
