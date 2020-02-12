@@ -9,7 +9,7 @@ chardet==3.0.4
 colorama==0.3.9
 cycler==0.10.0
 dj-database-url==0.5.0
-Django==2.1.1
+Django==2.2.10
 dl==0.1.0
 docutils==0.14
 future==0.16.0
